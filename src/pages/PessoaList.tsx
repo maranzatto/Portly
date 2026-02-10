@@ -47,10 +47,10 @@ const VisitorList: React.FC = () => {
       setShowDeleteModal(false);
       const visitorName = visitorToDelete.fullName;
       setVisitorToDelete(null);
-      showSuccess(`Visitante ${visitorName} excluído com sucesso`);
+      showSuccess(`Visitante ${visitorName} inativado com sucesso`);
       loadVisitors();
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Erro ao excluir visitante';
+      const errorMessage = err instanceof Error ? err.message : 'Erro ao inativar visitante';
       showError(errorMessage);
       console.error(err);
     }
@@ -218,7 +218,7 @@ const VisitorList: React.FC = () => {
                                 <button
                                   className="btn btn-danger"
                                   onClick={() => handleDeleteClick(visitor)}
-                                  title="Excluir"
+                                  title="Inativar"
                                 >
                                   <i className="bi bi-trash"></i>
                                 </button>
