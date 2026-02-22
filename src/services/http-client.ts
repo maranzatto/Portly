@@ -74,7 +74,7 @@ export class HttpClient {
     try {
       return await response.json();
     } catch (parseError) {
-      console.warn('JSON parse failed for successful response:', parseError);
+      console.warn('Falha no parse JSON para resposta bem-sucedida:', parseError);
       throw new ApiError('Formato de resposta inválido do servidor');
     }
   }
@@ -96,14 +96,14 @@ export class HttpClient {
     } catch (error) {
       if (error instanceof Error) {
         if (error.name === 'AbortError') {
-          throw new ApiError(`Request timeout after ${timeout}ms`);
+          throw new ApiError(`Requisição expirou após ${timeout}ms`);
         }
         if (error instanceof ApiError) {
           throw error;
         }
-        throw new ApiError(`Network error: ${error.message}`);
+        throw new ApiError(`Erro de rede: ${error.message}`);
       }
-      throw new ApiError('Unknown error occurred');
+      throw new ApiError('Erro desconhecido ocorreu');
     } finally {
       clearTimeout(timeoutId);
     }
